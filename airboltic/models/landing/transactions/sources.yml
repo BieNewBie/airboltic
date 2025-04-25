@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: airboltic_transactions
+    description: "Airboltic customer data"
+    schema: airboltic_transactions
+    tables:
+      - name: trips
+        description: "Airboltic trips data"
+      - name: orders
+        description: "Airboltic orders data"

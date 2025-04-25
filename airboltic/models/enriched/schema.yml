@@ -1,0 +1,152 @@
+version: 2
+
+models:
+  - name: airplane_details_inc
+    description: '{{ doc("airplane_details_inc") }}'
+    columns:
+      - name: airplane_id
+        description: Unique identifier for each aeroplane.
+        data_type: INT
+        tests:
+          - not_null
+          - unique
+      - name: model
+        description: The model name of aeroplane.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: manufacturer
+        description: The manufacturer of aeroplane.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: max_seats
+        description: The seating capacity of aeroplane
+        data_type: INT
+        tests:
+          - not_null
+      - name: max_weight
+        description: The maximum weight bearing capacity of aeroplane
+        data_type: INT
+
+      - name: max_distance
+        description: The maximum distance the aeroplane can travel
+        data_type: INT
+
+      - name: engine_type
+        description: The engine type of aeroplane
+        data_type: VARCHAR
+
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null
+  - name: customer_details_inc
+    description: '{{ doc("customer_details_inc") }}'
+    columns:
+      - name: customer_id
+        description: Unique identifier for each customer.
+        data_type: INT
+        tests:
+          - not_null
+          - unique
+      - name: name_hash
+        description: SHA1 hashed name of the customer
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: email_hash
+        description: SHA1 hashed email of the customer
+        data_type: VARCHAR
+
+      - name: phone_number_hash
+        description: SHA1 hashed phone number of the customer
+        data_type: VARCHAR
+
+      - name: customer_group_id
+        description: Unique identifier for each customer group.
+        data_type: INT
+
+      - name: type
+        description: The type of customer group.
+        data_type: VARCHAR
+
+      - name: customer_group_name
+        description: The name of the customer group.
+        data_type: VARCHAR
+
+      - name: registry_number
+        description: The registry number of the customer group.
+        data_type: VARCHAR
+
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null
+
+  - name: order_details_inc
+    description: '{{ doc("order_details_inc") }}'
+    columns:
+      - name: order_id
+        description: Unique identifier for each order.
+        data_type: INT
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: The customer ID associated with the order.
+        data_type: INT
+        tests:
+          - not_null
+      - name: airplane_id
+        description: The unique identifier for the airplane used in the order.
+        data_type: INT
+        tests:
+          - not_null
+      - name: price
+        description: The amount charged for the order, in EUR.
+        data_type: INT
+        tests:
+          - not_null
+      - name: status
+        description:  The status of the order (e.g., completed, pending).
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: origin_city
+        description: The city where the trip originated.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: destination_city
+        description: The city where the trip ended.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: trip_start_date
+        description: The date when the trip started.
+        data_type: DATE
+        tests:
+          - not_null
+      - name: start_timestamp
+        description: The timestamp when the trip started.
+        data_type: TIMESTAMP
+        tests:
+          - not_null
+      - name: end_timestamp
+        description: The timestamp when the trip ended.
+        data_type: TIMESTAMP
+        tests:
+          - not_null
+      - name: trip_duration
+        description: The duration of the trip in minutes.
+        data_type: DOUBLE
+        tests:
+          - not_null
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null

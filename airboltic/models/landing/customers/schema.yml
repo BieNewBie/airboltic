@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: customer_group_inc
+    description: '{{ doc("customer_group_inc") }}'
+    columns:
+      - name: customer_group_id
+        description: Unique identifier for each customer group.
+        data_type: INT
+        tests:
+          - not_null
+          - unique
+      - name: type
+        description: The type of customer group.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: name
+        description: The name of the customer group.
+        data_type: VARCHAR
+        tests:
+          - not_null
+
+      - name: registry_number
+        description: The registry number of the customer group.
+        data_type: VARCHAR
+
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null
+  - name: customers_inc
+    description: '{{ doc("customers_inc") }}'
+    columns:
+      - name: customer_id
+        description: Unique identifier for each customer.
+        data_type: INT
+        tests:
+          - not_null
+          - unique
+      - name: name_hash
+        description: SHA1 hashed name of the customer
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: customer_group_id
+        description: The group ID of the customer.
+        data_type: INT
+
+      - name: email_hash
+        description: SHA1 hashed email of the customer
+        data_type: VARCHAR
+
+      - name: phone_number_hash
+        description: SHA1 hashed phone number of the customer
+        data_type: VARCHAR
+
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null

@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: airboltic_customer
+    description: "Airboltic customer data"
+    schema: airboltic_customer
+    tables:
+      - name: customer_groups
+        description: "Airboltic customer groups data"
+      - name: customers
+        description: "Airboltic customer data"

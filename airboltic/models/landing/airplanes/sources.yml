@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: airboltic_fleet
+    description: "Airboltic fleet data"
+    schema: airboltic_fleet
+    tables:
+      - name: aeroplane_dimension
+        description: "Aeroplane dimensional data"
+      - name: aeroplane_model
+        description: "Aeroplane model specifications data"

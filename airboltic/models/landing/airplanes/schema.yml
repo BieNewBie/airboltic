@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: airplanes_inc
+    description: '{{ doc("airplanes_inc") }}'
+    columns:
+      - name: airplane_id
+        description: Unique identifier for each aeroplane.
+        data_type: INT
+        tests:
+          - not_null
+          - unique
+      - name: model
+        description: The model name of aeroplane.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: manufacturer
+        description: The manufacturer of aeroplane.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null
+  - name: airplane_models_inc
+    description: '{{ doc("airplane_models_inc") }}'
+    columns:
+      - name: manufacturer
+        description: The manufacturer of aeroplane.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: model
+        description: The model name of aeroplane.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: max_seats
+        description: The seating capacity of aeroplane
+        data_type: INT
+        tests:
+          - not_null
+      - name: max_weight
+        description: The maximum weight bearing capacity of aeroplane
+        data_type: INT
+        tests:
+          - not_null
+      - name: max_distance
+        description: The maximum distance the aeroplane can travel
+        data_type: INT
+        tests:
+          - not_null
+      - name: engine_type
+        description: The engine type of aeroplane
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null

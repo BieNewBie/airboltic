@@ -1,0 +1,137 @@
+version: 2
+
+models:
+  - name: airplane_orders_summary_inc
+    description: '{{ doc("airplane_orders_summary_inc") }}'
+    columns:
+      - name: airplane_id
+        description: Unique identifier for each aeroplane.
+        data_type: INT
+        tests:
+          - not_null
+          - unique
+      - name: manufacturer
+        description: The manufacturer of aeroplane.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: model
+        description: The model name of aeroplane.
+        data_type: VARCHAR
+        tests:
+          - not_null
+      - name: max_seats
+        description: The seating capacity of aeroplane
+        data_type: INT
+        tests:
+          - not_null
+      - name: max_weight
+        description: The maximum weight bearing capacity of aeroplane
+        data_type: INT
+      - name: max_distance
+        description: The maximum distance the aeroplane can travel
+        data_type: INT
+      - name: engine_type
+        description: The engine type of aeroplane
+        data_type: VARCHAR
+      - name: total_orders
+        description: The total number of orders for the aeroplane
+        data_type: INT
+      - name: total_orders_finished
+        description: The total number of orders for the aeroplane with status 'Finished'
+        data_type: INT
+      - name: total_orders_cancelled
+        description: The total number of orders for the aeroplane with status 'Cancelled'
+        data_type: INT
+      - name: booking_value
+        description: The total booking value (amount) of the aeroplane in EUR
+        data_type: INT
+      - name: total_trip_duration
+        description: The total trip duration of the aeroplane in hours
+        data_type: DOUBLE
+      - name: avg_trip_duration
+        description: The average trip duration of the aeroplane
+        data_type: DOUBLE
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null
+
+  - name: customer_group_summary_inc
+    description: '{{ doc("customer_group_summary_inc") }}'
+    columns:
+      - name: customer_group_id
+        description: Unique identifier for each customer group.
+        data_type: INT
+        tests:
+          - not_null
+          - unique
+      - name: customer_group_name
+        description: The name of the customer group.
+        data_type: VARCHAR 
+      - name: type
+        description: The type of customer group.
+        data_type: VARCHAR
+      - name: total_orders
+        description: The total number of orders for the customer group
+        data_type: INT
+      - name: total_orders_finished
+        description: The total number of orders for the customer group with status 'Finished'
+        data_type: INT
+      - name: total_orders_cancelled
+        description: The total number of orders for the customer group with status 'Cancelled'
+        data_type: INT
+      - name: booking_value
+        description: The total booking value (amount) of the customer group in EUR
+        data_type: INT
+      - name: total_trip_duration
+        description: The total trip duration of the customer group in hours
+        data_type: DOUBLE
+      - name: avg_trip_duration
+        description: The average trip duration of the customer group
+        data_type: DOUBLE
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null
+
+  - name: executive_summary_inc
+    description: '{{ doc("executive_summary_inc") }}'
+    columns:
+      - name: trip_start_date
+        description: Trip start date
+        data_type: DATE
+        tests:
+          - not_null
+          - unique
+      - name: total_orders
+        description: The total number of orders for the given trip start date
+        data_type: INT
+      - name: total_orders_finished
+        description: The total number of orders for the given trip start date with status 'Finished'
+        data_type: INT
+      - name: total_orders_cancelled
+        description: The total number of orders for the given trip start date with status 'Cancelled'
+        data_type: INT
+      - name: booking_value
+        description: The total booking value (amount) for the given trip start date in EUR
+        data_type: INT
+      - name: total_airplanes
+        description: The total airplanes for the given trip start date
+        data_type: INT
+      - name: total_customers
+        description: The total customers for the given trip start date
+        data_type: INT
+      - name: total_trip_duration
+        description: The total trip duration for the given trip start date
+        data_type: DOUBLE
+      - name: avg_trip_duration
+        description: The average trip duration for the given trip start date
+        data_type: DOUBLE
+      - name: load_date
+        description: Ingestion date of the data
+        data_type: DATE
+        tests:
+          - not_null

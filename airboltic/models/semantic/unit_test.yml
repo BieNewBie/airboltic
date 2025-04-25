@@ -1,0 +1,51 @@
+version: 2
+
+unit_tests:
+  - name: check_exec_summary
+    description: "Checks the executive summary model"
+    model: executive_summary_inc
+    given:
+      - input: ref('order_details_inc')
+        format: sql
+        rows: |
+         SELECT 1 AS order_id,
+                1 AS customer_id,
+                1 AS airplane_id,
+                10 AS price,
+                'Finished' AS status,
+                'ABC' AS origin_city,
+                'XYZ' AS destination_city,
+                CAST('2024-08-03' AS date) AS trip_start_date,
+                CAST('2024-08-03 09:00:00' AS timestamp) AS start_timestamp,
+                CAST('2024-08-03 17:00:00' AS timestamp) AS end_timestamp,
+                480.0 AS trip_duration,
+                CAST('2025-04-24' AS date) AS load_date
+
+          UNION ALL
+
+         SELECT 2 AS order_id,
+                2 AS customer_id,
+                2 AS airplane_id,
+                20 AS price,
+                'Finished' AS status,
+                'PQR' AS origin_city,
+                'CDE' AS destination_city,
+                CAST('2024-08-03' AS date) AS trip_start_date,
+                CAST('2024-08-05 09:00:00' AS timestamp) AS start_timestamp,
+                CAST('2024-08-05 17:00:00' AS timestamp) AS end_timestamp,
+                500.0 AS trip_duration,
+                CAST('2025-04-24' AS date) AS load_date
+
+    expect:
+      format: sql
+      rows: |
+          SELECT CAST('2024-08-03' AS date) AS trip_start_date,
+                 2 AS total_orders,
+                 2 AS total_orders_finished,
+                 0 AS total_orders_cancelled,
+                 30 AS booking_value,
+                 2 AS total_airplanes,
+                 2 AS total_customers,
+                 980 AS total_trip_duration,
+                 490 AS avg_trip_duration,
+                 CAST('2025-04-24' AS date) AS load_date
